@@ -8,3 +8,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.login-container content {
+    margin: 20px;
+}
+
+.login-container content form {
+    margin: 0;
+}
