@@ -38,6 +38,7 @@
 
 .register-container .content .body-credentials {
   display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
   margin-top: 2vh;
@@ -81,12 +82,13 @@
 
 .register-container .content section {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .register-container .content section form {
-  width: 100%;
+  height: 100%;
   position: relative;
 }
 
@@ -108,6 +110,26 @@
   color: #505055;
   transition: background-color 0.3s;
   border: 1px solid #b0b0b5;
+}
+
+.register-container .content section form .button-area {
+  position: absolute;
+  bottom: 0
+}
+
+.register-container .content section form .button-area button {
+  color: #fff;
+
+  width: 130px;
+  height: 36px;
+
+  font-weight: 500;
+  font-size: 14px;
+
+
+  border-radius: 3px;
+  border: 0;
+  transition: box-shadow 0.2s;
 }
 
 
@@ -158,25 +180,6 @@
   background: #fff;
   transition: background-color 0.3s;
   border: 1px solid #b0b0b5;
-}
-
-.register-container .content .button-area {
-  margin-top: auto;
-}
-
-.register-container .content .button-area button {
-  color: #fff;
-
-  width: 130px;
-  height: 36px;
-
-  font-weight: 500;
-  font-size: 14px;
-
-
-  border-radius: 3px;
-  border: 0;
-  transition: box-shadow 0.2s;
 }
 
 .register-container .content .button-area button:hover {
