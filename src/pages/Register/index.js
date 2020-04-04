@@ -1,6 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import './styles.css';
 import api from '../../services/api';
+import MaskedInput from 'react-text-mask';
 
 import profilePicture from '../../assets/default-user.png';
 
@@ -28,58 +29,6 @@ export default function Register() {
 			default:
 				return PersonalInfo();
 		}
-	}
-
-	// This function use a RegExp to format the string according to the specifications of the brazilian CPF.
-	function formatCpf(cpfString) {
-		let formattedCpf = cpfString;
-
-		const regex12 = /(\d{3}).(\d{3}).(\d{3})/;
-		const regex8 = /(\d{3}).(\d{3})/;
-		const regex4 = /(\d{3})/;
-
-		// Apply a RegExp to correctly format the received digits with '.' and '-'
-		if (cpfString.length === 12 && cpfString.charAt(11) !== '-') {
-			formattedCpf = formattedCpf.replace(regex12, '$1.$2.$3-');
-		} else if (cpfString.length === 8 && cpfString.charAt(7) !== '.') {
-			formattedCpf = formattedCpf.replace(regex8, '$1.$2.');
-		} else if (cpfString.length === 4 && cpfString.charAt(3) !== '.') {
-			formattedCpf = formattedCpf.replace(regex4, '$1.');
-		}
-
-		// The CPF have 11 digits, plus 3 special characters, so the state will be updated only when length <= 14
-		if (formattedCpf.length <= 14) setCpf(formattedCpf);
-	}
-
-	// This function use a RegExp to format the string according to the specifications of the brazilian RG.
-	function formatRg(rgString) {
-		let formattedRg = rgString;
-
-		const regex2 = /(\d{1})/;
-		const regex6 = /(\d{1}).(\d{3})/;
-
-		if (rgString.length === 2 && rgString.charAt(1) !== '.') {
-			formattedRg = formattedRg.replace(regex2, '$1.');
-		} else if (rgString.length === 6 && rgString.charAt(5) !== '.') {
-			formattedRg = formattedRg.replace(regex6, '$1.$2.');
-		}
-
-		if (formattedRg.length <= 9) setRg(formattedRg);
-	}
-
-	function formatBirthdate(birthdateString) {
-		let formattedBirthdate = birthdateString;
-
-		const regex3 = /(\d{2})/;
-		const regex6 = /(\d{2})-(\d{2})/;
-
-		if (birthdateString.length === 3 && birthdateString.charAt(2) !== '-') {
-			formattedBirthdate = formattedBirthdate.replace(regex3, '$1-');
-		} else if (birthdateString.length === 6 && birthdateString.charAt(5) !== '-') {
-			formattedBirthdate = formattedBirthdate.replace(regex6, '$1-$2-');
-		}
-
-		if (formattedBirthdate.length <= 10) setBirthdate(formattedBirthdate);
 	}
 
 	function handleRegister(e) {
@@ -188,6 +137,38 @@ export default function Register() {
 	}
 
 	function PersonalInfo() {
+		const phoneNumberMask = [
+			'(',
+			/\d/,
+			/\d/,
+			')',
+			' ',
+			/\d/,
+			/\d/,
+			/\d/,
+			/\d/,
+			/\d/,
+			'-',
+			/\d/,
+			/\d/,
+			/\d/,
+			/\d/
+		];
+
+		function rgMask(s) {
+			const rgMask1 = [ /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/ ];
+
+			const rgMask2 = [ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/ ];
+
+			const returnMask = s.length < 7 ? rgMask2 : s.length === 7 ? false : rgMask1;
+
+			return returnMask;
+		}
+
+		const cpfMask = [ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '-', /\d/, /\d/ ];
+
+		const birthdateMask = [ /\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/ ];
+
 		return (
 			<Fragment>
 				<div className="header">
@@ -211,9 +192,11 @@ export default function Register() {
 						<div className="input-group">
 							<span>
 								<label htmlFor="cpf">CPF</label>
-								<input
+								<MaskedInput
+									mask={cpfMask}
 									value={cpf}
-									onChange={(e) => formatCpf(e.target.value)}
+									guide={false}
+									onChange={(e) => setCpf(e.target.value)}
 									id="cpf"
 									placeholder="Informe o seu CPF"
 								/>
@@ -221,9 +204,11 @@ export default function Register() {
 
 							<span>
 								<label htmlFor="rg">RG</label>
-								<input
+								<MaskedInput
+									mask={rgMask(rg)}
+									guide={false}
 									value={rg}
-									onChange={(e) => formatRg(e.target.value)}
+									onChange={(e) => setRg(e.target.value)}
 									id="rg"
 									placeholder="Informe o seu RG"
 								/>
@@ -231,8 +216,12 @@ export default function Register() {
 
 							<span>
 								<label htmlFor="phone-number">N° de celular</label>
-								<input
+								<MaskedInput
+									mask={phoneNumberMask}
 									onChange={(e) => setPhoneNumber(e.target.value)}
+									value={phoneNumber}
+									guide={false}
+									type="tel"
 									id="phone-number"
 									placeholder="Informe o número do seu celular, com DDD"
 								/>
@@ -241,11 +230,13 @@ export default function Register() {
 
 						<div className="input-group">
 							<span>
-								<label htmlFor="cpf">Data de nascimento</label>
-								<input
-									onChange={(e) => formatBirthdate(e.target.value)}
+								<label htmlFor="birthdate">Data de nascimento</label>
+								<MaskedInput
+									mask={birthdateMask}
+									onChange={(e) => setBirthdate(e.target.value)}
 									value={birthdate}
-									id="cpf"
+									guide={false}
+									id="birthdate"
 									placeholder="Informe a sua data de nascimento"
 								/>
 							</span>
