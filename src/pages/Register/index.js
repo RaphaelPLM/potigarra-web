@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
 import api from '../../services/api';
 import MaskedInput from 'react-text-mask';
@@ -20,6 +21,8 @@ export default function Register() {
 	const [ phoneNumber, setPhoneNumber ] = useState('');
 	const [ classNumber, setClassNumber ] = useState(-1);
 
+	const history = useHistory();
+
 	function formSwitch() {
 		switch (currentForm) {
 			case 1:
@@ -31,7 +34,7 @@ export default function Register() {
 		}
 	}
 
-	function handleRegister(e) {
+	async function handleRegister(e) {
 		e.preventDefault();
 
 		const data = {
@@ -47,9 +50,13 @@ export default function Register() {
 			gender: gender
 		};
 
-		console.log('Enviando formulário', data);
+		try {
+			const response = await api.post('/register', data);
 
-		api.post('/register', data);
+			history.push('/');
+		} catch (error) {
+			console.log(error);
+		}
 	}
 
 	function Credentials() {
@@ -266,13 +273,13 @@ export default function Register() {
 						</div>
 
 						<div className="button-area">
-							<button className="button-back" onClick={() => setCurrentForm(currentForm - 1)}>
-								Voltar
-							</button>
-
 							<button className="button-next" onClick={() => setCurrentForm(currentForm + 1)}>
 								Avançar
 							</button>
+
+							<Link className="link" to="/">
+								<h4>Já possui cadastro? Faça login!</h4>
+							</Link>
 						</div>
 					</form>
 				</section>

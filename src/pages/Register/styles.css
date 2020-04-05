@@ -201,3 +201,12 @@
 .register-container .content .button-area button+button {
   margin-left: 16px;
 }
+
+.register-container .content .button-area h4 {
+  margin-top: 8px;
+  color: #707075;
+}
+
+.register-container .content .button-area .link {
+  text-decoration: none;
+}
