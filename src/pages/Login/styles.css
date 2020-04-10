@@ -1,0 +1,157 @@
+.login-container {
+  height: 100vh;
+  margin: 0 auto;
+  background: #4d29ee;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container .content {
+  padding: 70px 100px 100px 100px;
+
+  width: 100%;
+  height: 100%;
+
+  max-width: 530px;
+  max-height: 680px;
+
+
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 130px rgba(0, 0, 0, 0.6);
+
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.login-container .content .header {
+  margin-bottom: 80px
+}
+
+.login-container .content .header h1 {
+  margin-bottom: 5px
+}
+
+.login-container .content .header h3 {
+  color: #909095;
+}
+
+.login-container .content section {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-container .content section form {
+  height: 100%;
+  width: 100%;
+  position: relative;
+
+}
+
+.login-container .content section form label {
+  padding-bottom: 1vh;
+  display: block;
+  font-weight: 500;
+}
+
+
+
+.login-container .content section form input {
+  height: 48px;
+  width: 100%;
+
+  padding-left: 16px;
+  padding-right: 16px;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #505055;
+  transition: background-color 0.3s;
+  border: 1px solid #b0b0b5;
+}
+
+.login-container .content section form input:hover {
+  background-color: #f5f5f5;
+
+  border: 1px solid #b0b0b5;
+  outline: 0px solid transparent;
+}
+
+.login-container .content section form input::placeholder {
+  font-size: 14px;
+  font-weight: 100;
+}
+
+.login-container .content section form span {
+  flex-grow: 1;
+  flex-basis: 0;
+
+  min-width: 320px;
+}
+
+.login-container .content section form .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -24px;
+}
+
+.login-container .content section form .input-group:not(:last-child) {
+  margin-bottom: 3vh;
+}
+
+.login-container .content section form .input-group span {
+  margin-left: 24px;
+}
+
+.login-container .content section form .input-group h4 {
+  margin-top: 8px;
+  color: #707075;
+}
+
+.login-container .content section form .button-area {
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-container .content section form .button-area button {
+  color: #fff;
+
+  width: 100%;
+  height: 50px;
+
+  font-weight: 500;
+  font-size: 18px;
+
+
+  border-radius: 3px;
+  border: 0;
+  transition: box-shadow 0.2s;
+}
+
+.login-container .content .button-area button:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-container .content .button-area .button-success {
+  background-color: #22bb2a;
+}
+
+.login-container .content section form .button-area h4 {
+  margin-top: 8px;
+  color: #707075;
+}
+
+.link {
+  text-decoration: none;
+}
