@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './styles.css';
 import api from '../../services/api';
+import { login } from '../../services/auth_service';
 
 export default function Login() {
 	const [ email, setEmail ] = useState('');
 	const [ password, setPassword ] = useState('');
+
+	const history = useHistory();
 
 	async function handleLogin(e) {
 		e.preventDefault();
@@ -13,9 +16,11 @@ export default function Login() {
 		const data = { email, password };
 
 		try {
-			const response = await api.post('/login', data);
+      const response = await api.post('/login', data);
+      
+			login(response.data.token);
 
-			console.log(response);
+			history.push('/');
 		} catch (error) {
 			console.log(error);
 		}
