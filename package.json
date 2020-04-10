@@ -12,7 +12,9 @@
     "react-text-mask": "^5.4.3"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
