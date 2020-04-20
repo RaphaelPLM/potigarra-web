@@ -1,0 +1,96 @@
+/* Simple dashboard grid CSS */
+
+/* Assign grid instructions to our parent grid container */
+.grid-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: 50px 1fr 35px;
+  grid-template-areas:
+    "header header"
+    "sidenav main"
+    "sidenav footer";
+  height: 100vh;
+}
+
+/* Give every child element its grid name */
+.grid-container .header {
+  grid-area: header;
+  background-color: #1583cc;
+}
+
+.grid-container .sidenav {
+  grid-area: sidenav;
+  background-color: #dddddd;
+
+  box-shadow: 0 20px 20px rgb(0, 0, 0, 0.6);
+}
+
+.grid-container .main {
+  grid-area: main;
+  background-color: #f9f9f9;
+
+  display: grid;
+
+  grid-template-rows: 70px 1fr;
+
+  grid-template-areas:
+    "header"
+    "body"
+}
+
+.grid-container .main .menu {
+  grid-area: header;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  list-style-type: none;
+
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.grid-container .main .menu .item {
+  height: 100%;
+  width: 110px;
+
+  margin: 0 1vw 0 1vw;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-container .main .body {
+  grid-area: body;
+  
+  padding: 5vh 7vw 5vh 7vw;
+}
+
+.grid-container .main .body .card-grid {
+  margin: 30px auto;
+  padding: 5vh  0 0 0;
+  width: 100%; 
+  display: grid;
+ 
+  /* Define Auto Row size */
+  grid-auto-rows: 250px; 
+ 
+  /*Define our columns */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  grid-gap: 1em;
+}
+
+.grid-container .main .body .card-grid .card {
+  border: 1px solid #dfdfdf;
+  border-radius: 3px;
+
+  padding: 20px;
+}
+
+.grid-container .footer {
+  grid-area: footer;
+  background-color: #648ca6;
+}
