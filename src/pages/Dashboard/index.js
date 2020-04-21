@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import "./styles.css";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { IconButton } from "@material-ui/core";
-import Card from '../../components/Card2/Card';
-import CardGrid from '../../components/CardGrid/CardGrid'
+import Card from "../../components/Card2/Card";
+import CardGrid from "../../components/CardGrid/CardGrid";
+import api from "../../services/api";
 
 export default function Dashboard() {
+  const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let token = localStorage.getItem("@potigarra/token");
+
+    api
+      .get("/cards", {
+        headers: { Authorization: "Bearer " + token },
+      })
+      .then((response) => {
+        setCards(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log("Failed to fetch members. Try again."));
+  }, []);
+
   return (
     <div className="grid-container">
       <header className="header"></header>
@@ -47,14 +65,15 @@ export default function Dashboard() {
               <ViewModuleIcon />
             </IconButton>
           </div>
-
-          <CardGrid>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-            <Card/>
-          </CardGrid>
+          {isLoading === true ? (
+            <h1>Loading</h1>
+          ) : (
+            <CardGrid>
+              {cards.map((card) => (
+                <Card card={card}></Card>
+              ))}
+            </CardGrid>
+          )}
         </div>
       </main>
       <footer className="footer"></footer>

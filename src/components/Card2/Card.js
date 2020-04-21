@@ -1,23 +1,30 @@
 import React from "react";
 import "./styles.css";
 import profilePicture from "../../assets/download.jpg";
+import api from "../../services/api";
 
-export default function Card() {
+export default function Card(props) {
+  
+  function formatDate(unformattedDate) {
+    const date = new Date(unformattedDate);
+
+    return date.toLocaleDateString('en-GB');
+  }
+  
   return (
     <div className="card">
-    
-        <img className="card-image" src={profilePicture} />
-   
+      <img className="card-image" src={profilePicture} />
+
       <body className="card-body">
         <div>
-          <h4 className="blue">Raphael Paula Leite Müller</h4>
+          <h4 className="blue">{props.card.username}</h4>
         </div>
 
-        <br/>
+        <br />
 
         <div>
           <h5 className="dark-gray">Data de registro</h5>
-          <h5 className="blue">01/01/2020</h5>
+          <h5 className="blue">{formatDate(props.card.created_at)}</h5>
         </div>
       </body>
 
