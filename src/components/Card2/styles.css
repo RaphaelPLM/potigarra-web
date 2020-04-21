@@ -1,0 +1,42 @@
+.card {
+  border-radius: 3px;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card img {
+  height: 100%;
+  width: 100%;
+}
+
+.card .card-body {
+  padding: 15px;
+
+  border: 1px solid #dfdfdf;
+}
+
+.card .card-footer {
+  height: 40px;
+  width: 100%;
+
+  padding-left: 15px;
+
+  background-color: #dddddd;
+
+  display: flex;
+  align-items: center;
+}
+
+.card .card-footer .card-status {
+  width: 12px;
+  height: 12px;
+
+  margin-left: 10px;
+
+  border-radius: 100%;
+
+  background-color: rgb(255, 136, 0);
+} 

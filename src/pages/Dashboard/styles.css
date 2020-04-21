@@ -22,7 +22,9 @@
   grid-area: sidenav;
   background-color: #dddddd;
 
-  box-shadow: 0 20px 20px rgb(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+  z-index: 10;
 }
 
 .grid-container .main {
@@ -69,25 +71,15 @@
   padding: 5vh 7vw 5vh 7vw;
 }
 
-.grid-container .main .body .card-grid {
-  margin: 30px auto;
-  padding: 5vh  0 0 0;
-  width: 100%; 
-  display: grid;
- 
-  /* Define Auto Row size */
-  grid-auto-rows: 250px; 
- 
-  /*Define our columns */
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
-  grid-gap: 1em;
+.grid-container .main .body .horizontal-separator {
+  border-bottom: 1px solid #dfdfdf;
+  margin: 1vh 0;
 }
 
-.grid-container .main .body .card-grid .card {
-  border: 1px solid #dfdfdf;
-  border-radius: 3px;
+.grid-container .main .body .icon-bar {
+  display: flex;
 
-  padding: 20px;
+  flex-flow: row-reverse;
 }
 
 .grid-container .footer {
