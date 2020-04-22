@@ -3,6 +3,7 @@ import "./styles.css";
 import profilePicture from "../../assets/download.jpg";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { IconButton } from "@material-ui/core";
+import api from "../../services/api";
 
 export default function Card(props) {
   const [cardFront, setCardFront] = useState(true);
@@ -11,6 +12,21 @@ export default function Card(props) {
     const date = new Date(unformattedDate);
 
     return date.toLocaleDateString("en-GB");
+  }
+
+  async function activateMember() {
+    let token = localStorage.getItem("@potigarra/token");
+
+    api
+      .put(
+        "/cards/generate",
+        { memberId: props.card.member_id },
+        { headers: { Authorization: "Bearer " + token } }
+      )
+      .then((response) => {
+        console.log("SUCCESS", response.data);
+      })
+      .catch((error) => console.log("ERROR", error));
   }
 
   function CardFront() {
@@ -82,9 +98,7 @@ export default function Card(props) {
             <h5 className="blue">{props.card.class_number}</h5>
           </div>
 
-          <button>
-            Ativar
-          </button>
+          <button onClick={() => activateMember()}>Ativar</button>
         </body>
 
         <footer className="card-footer">
