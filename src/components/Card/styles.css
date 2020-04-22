@@ -1,67 +1,90 @@
 .card {
-  border: 1px solid #dfdfdf;
-  border-radius: 3px;
+  border-radius: 7px;
+
+  height: 360px;
+
+  overflow: hidden;
+
+  position: relative;
 
   display: flex;
   flex-direction: column;
 }
 
-.card .card-header {
-  height: 40px;
+.card .icon-more {
+  position: absolute;
+
+  background-color: white;
+
+  top: 3%;
+  right: 3%;
+
+  transition: background-color 0.3s
+}
+
+.card .icon-more:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.card img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.card .card-body {
+  padding: 15px;
+
+  flex-basis: 0;
+  flex-grow: 1;
+
+  background-color: #eeeeee;
+
+  border: 1px solid #dfdfdf;
+  border-top: 0px;
+  border-bottom: 0px;
+}
+
+.card .card-footer {
+  height: 6px;
   width: 100%;
 
   padding-left: 15px;
-
-  background-color: #dddddd;
 
   display: flex;
   align-items: center;
 }
 
-.card .card-header .card-status {
-  width: 12px;
-  height: 12px;
+.card .card-back-body {
+  padding: 15px 15px 10px 15px;
 
-  margin-left: 10px;
+  flex: 1;
 
-  border-radius: 100%;
-
-  background-color: rgb(255, 136, 0);
-}
-
-.card .card-body {
-  width: 100%;
-  height: 100%;
-
-  padding: 20px;
+  border-radius: 7px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 
   background-color: #eeeeee;
 
-  display: grid;
+  border: 1px solid #dfdfdf;
 
-  grid-template-columns: 80px 1fr 1fr;
-  grid-template-rows: 35px 35px 30px 30px;
-  grid-row-gap: 1em;
-  grid-column-gap: 1em;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
-.card .card-body .card-image{
-  grid-row-start: 1;
-  grid-row-end: 3;
-  grid-column: 1;
+.card .card-back-body button {
+  border: 0;
+  background-color: rgb(3, 199, 140);
+  border-radius: 16px;
+  height: 32px;
 
-  max-width: 100%;
+  margin: 0 20px 0 20px;
 
-  width: 100%;
-  height: 100%;
-
-  border-radius: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fdfdfd;
 }
 
-.card .card-body .field{
-  grid-column: span 1
-}
-
-.card .card-body .double-field{
-  grid-column: span 2
+.card .card-back-body button:hover {
+  filter: brightness(98%);
 }

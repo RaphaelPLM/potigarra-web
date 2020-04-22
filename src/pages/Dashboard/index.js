@@ -3,12 +3,14 @@ import "./styles.css";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
 import { IconButton } from "@material-ui/core";
-import Card from "../../components/Card2/Card";
+import Card from "../../components/Card/Card";
 import CardGrid from "../../components/CardGrid/CardGrid";
+import CardManagerMenu from "../../components/CardManagerMenu/CardManagerMenu";
 import api from "../../services/api";
 
 export default function Dashboard() {
   const [cards, setCards] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,10 +22,24 @@ export default function Dashboard() {
       })
       .then((response) => {
         setCards(response.data);
+        setFilteredCards(response.data);
         setIsLoading(false);
       })
       .catch((err) => console.log("Failed to fetch members. Try again."));
   }, []);
+
+   function filterCards(filter) {
+    console.log('Callback is working. Filtering by', filter);
+
+    if(filter === '*')
+    {
+      setFilteredCards(cards);
+
+      return;
+    }
+
+    setFilteredCards(cards.filter((card) => card.status === filter));
+  }
 
   return (
     <div className="grid-container">
@@ -38,20 +54,8 @@ export default function Dashboard() {
         </ul>
       </aside>
       <main className="main">
-        <ul className="menu">
-          <li className="item dark-gray">
-            <h4>Pendentes</h4>
-          </li>
-          <li className="item dark-gray">
-            <h4>Ativos</h4>
-          </li>
-          <li className="item dark-gray">
-            <h4>Expirados</h4>
-          </li>
-          <li className="item dark-gray">
-            <h4>Todos</h4>
-          </li>
-        </ul>
+        <CardManagerMenu toggleCallback={filterCards} className="menu"/>
+
         <div className="body">
           <h3 className="dark-gray">Cartões pendentes</h3>
 
@@ -69,7 +73,7 @@ export default function Dashboard() {
             <h1>Loading</h1>
           ) : (
             <CardGrid>
-              {cards.map((card) => (
+              {filteredCards.map((card) => (
                 <Card card={card}></Card>
               ))}
             </CardGrid>
