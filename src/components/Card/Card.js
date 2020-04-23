@@ -36,7 +36,7 @@ export default function Card(props) {
         { headers: { Authorization: "Bearer " + token } }
       )
       .then((response) => {
-        console.log("SUCCESS", response.data);
+        props.updateCallback(response.data.card)
       })
       .catch((error) => console.log("ERROR", error));
   }

@@ -10,6 +10,7 @@ import api from "../../services/api";
 
 export default function Dashboard() {
   const [cards, setCards] = useState([]);
+  const [lastFilter, setLastFilter] = useState("*");
   const [filteredCards, setFilteredCards] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -25,14 +26,18 @@ export default function Dashboard() {
         setFilteredCards(response.data);
         setIsLoading(false);
       })
-      .catch((err) => console.log("Failed to fetch members. Try again."));
+      .catch((err) => console.log("[ERROR]", err));
   }, []);
 
-   function filterCards(filter) {
-    console.log('Callback is working. Filtering by', filter);
+  // Everytime cards get updated, apply the last selected filter to them
+  useEffect(() => {
+    filterCards(lastFilter);
+  }, [cards]);
 
-    if(filter === '*')
-    {
+  function filterCards(filter) {
+    setLastFilter(filter);
+
+    if (filter === "*") {
       setFilteredCards(cards);
 
       return;
@@ -41,20 +46,35 @@ export default function Dashboard() {
     setFilteredCards(cards.filter((card) => card.status === filter));
   }
 
+  function updateCards(card) {
+    const id = card.id;
+    const status = card.status;
+    const serial_number = card.serial_number;
+    const url = card.url;
+
+    let cardsTmp = cards.map((el) =>
+      el.id === id
+        ? { ...el, status: status, serial_number: serial_number, url: url }
+        : el
+    );
+
+    setCards(cardsTmp);
+  }
+
   return (
     <div className="grid-container">
       <header className="header"></header>
       <aside className="sidenav">
         <ul className="list">
-          <li className="item">Item One</li>
-          <li className="item">Item Two</li>
-          <li className="item">Item Three</li>
-          <li className="item">Item Four</li>
-          <li className="item">Item Five</li>
+          <li key="1" className="item">Item One</li>
+          <li key="2"className="item">Item Two</li>
+          <li key="3" className="item">Item Three</li>
+          <li key="4" className="item">Item Four</li>
+          <li key="5" className="item">Item Five</li>
         </ul>
       </aside>
       <main className="main">
-        <CardManagerMenu toggleCallback={filterCards} className="menu"/>
+        <CardManagerMenu toggleCallback={filterCards} className="menu" />
 
         <div className="body">
           <h3 className="dark-gray">Cartões pendentes</h3>
@@ -74,7 +94,7 @@ export default function Dashboard() {
           ) : (
             <CardGrid>
               {filteredCards.map((card) => (
-                <Card card={card}></Card>
+                <Card updateCallback={updateCards} card={card}></Card>
               ))}
             </CardGrid>
           )}

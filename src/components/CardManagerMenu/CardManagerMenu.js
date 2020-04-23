@@ -25,7 +25,6 @@ export default function CardManagerMenu(props) {
 
   function toggleButton(text, filter) {
     setToggleId(text);
-    console.log(toggleId);
 
     props.toggleCallback(filter);
   }
