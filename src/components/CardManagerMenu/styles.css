@@ -1,0 +1,36 @@
+.menu {
+  height: 100%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  list-style-type: none;
+
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.menu .item {
+  height: 100%;
+  width: 110px;
+
+  margin: 0 1vw 0 1vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-sizing:border-box;
+
+  border: 0px; 
+  background-color: inherit;
+}
+
+.menu .item > * {
+  pointer-events: none
+}
+
+.menu .item:hover {
+  color: rgb(235, 0, 125);
+}
