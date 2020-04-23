@@ -1,0 +1,18 @@
+.card-grid {
+  margin: 30px auto;
+  width: 100%; 
+  display: grid;
+ 
+  /* Define Auto Row size */
+  grid-auto-rows: 360px; 
+ 
+  /*Define our columns */
+  /* grid-template-columns: repeat(auto-fill, minmax(320px, 340px));  */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 220px));
+  grid-gap: 3em;
+
+  list-style-type: none;
+
+  align-items: center;
+  justify-content: center;
+}
