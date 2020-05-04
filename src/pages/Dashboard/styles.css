@@ -15,16 +15,27 @@
 /* Give every child element its grid name */
 .grid-container .header {
   grid-area: header;
-  background-color: #1583cc;
 }
 
 .grid-container .sidenav {
   grid-area: sidenav;
-  background-color: #dddddd;
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  background-color: #e6e6e6;
 
   z-index: 10;
+}
+
+.grid-container .sidenav ul li{
+  padding-top: 18px;
+  padding-bottom: 18px;
+  text-align: center;
+}
+
+.grid-container .sidenav ul li:hover{
+  /* background-color: #67b7e6; */
+  border-left: 4px solid;
+  border-right: 4px solid transparent;
+  border-left-color: rgb(29, 182, 144);
+  color:  rgb(29, 182, 144);;
 }
 
 .grid-container .main {
@@ -56,7 +67,41 @@
   flex-flow: row-reverse;
 }
 
+.grid-container .main .body .icon-bar .icon{
+  color: #479ac0
+}
+
 .grid-container .footer {
   grid-area: footer;
-  background-color: #648ca6;
+  background-color: #040542;
+}
+
+.grid-container .sidenav .profile-banner {
+  display: flex;
+  
+  height: 140px;
+  width: 100%;
+
+  background-color: #67b7e6;
+
+  padding: 0px 20px;
+
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #7175d8; */
+} 
+
+.grid-container .sidenav .profile-banner .pic{
+  background-color: #fcfcfc;
+
+  flex-shrink: 0;
+
+  height: 80px;
+  width: 80px;
+  border-radius: 100%; 
+}
+
+.grid-container .sidenav .profile-banner h3{
+  color: white;
 }

@@ -9,8 +9,8 @@ export default function CardManagerMenu(props) {
   const [toggleId, setToggleId] = useState("Todos");
 
   const toggled = {
-    color: "rgb(235, 0, 125)",
-    borderBottom: "3px solid rgb(235, 0, 125)",
+    color: "rgb(29, 182, 144)",
+    borderBottom: "3px solid rgb(29, 182, 144)",
     borderTop: "3px solid transparent",
   };
 
