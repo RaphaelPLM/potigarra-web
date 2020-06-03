@@ -2,12 +2,14 @@ import React, { useEffect, useState, Fragment } from "react";
 import "./styles.css";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
-import AppsIcon from '@material-ui/icons/Apps';
+import AppsIcon from "@material-ui/icons/Apps";
 import { IconButton } from "@material-ui/core";
 import Card from "../../components/Card/Card";
 import CardGrid from "../../components/CardGrid/CardGrid";
 import CardManagerMenu from "../../components/CardManagerMenu/CardManagerMenu";
 import api from "../../services/api";
+
+import Sidenav from "./Sidenav";
 
 export default function Dashboard() {
   const [cards, setCards] = useState([]);
@@ -63,59 +65,63 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="grid-container">
+    <div className="dashboard-container">
       <header className="header blue-bg"></header>
-      <aside className="sidenav">
-        <div className="profile-banner">
-          <div className="pic"></div>
-          <h3>Bem-vindo, Raphael</h3>
-        </div>
-
-        <ul className="list">
-          <li key="1" className="item blue">
-            Gerenciar cartões
-          </li>
-          <li key="2" className="item blue">
-            Item Two
-          </li>
-          <li key="3" className="item blue">
-            Item Three
-          </li>
-          <li key="4" className="item blue">
-            Item Four
-          </li>
-          <li key="5" className="item blue">
-            Item Five
-          </li>
-        </ul>
-      </aside>
-      <main className="main">
-        <CardManagerMenu toggleCallback={filterCards} className="menu" />
-
-        <div className="body">
-          <h3 className="dark-gray">Cartões pendentes</h3>
-
-          <div className="horizontal-separator"></div>
-
-          <div className="icon-bar">
-            <IconButton className="icon" size="small" aria-label="list">
-              <AppsIcon />
-            </IconButton>
-            <IconButton className="icon" size="small" aria-label="list">
-              <ViewListIcon />
-            </IconButton>
+      <div className="main-wrapper">
+        <Sidenav isOpen={true} className="sidenav">
+          <div className="profile-banner">
+            <div className="pic"></div>
+            <h3>
+              Bem-vindo,<br></br> Raphael
+            </h3>
           </div>
-          {isLoading === true ? (
-            <h1>Loading</h1>
-          ) : (
-            <CardGrid>
-              {filteredCards.map((card) => (
-                <Card updateCallback={updateCards} card={card}></Card>
-              ))}
-            </CardGrid>
-          )}
-        </div>
-      </main>
+
+          <ul className="list">
+            <li key="1" className="item blue">
+              Gerenciar cartões
+            </li>
+            <li key="2" className="item blue">
+              Item Two
+            </li>
+            <li key="3" className="item blue">
+              Item Three
+            </li>
+            <li key="4" className="item blue">
+              Item Four
+            </li>
+            <li key="5" className="item blue">
+              Item Five
+            </li>
+          </ul>
+        </Sidenav>
+        <main className="main">
+          <CardManagerMenu toggleCallback={filterCards} className="menu" />
+
+          <div className="body">
+            <h3 className="dark-gray">Cartões pendentes</h3>
+
+            <div className="horizontal-separator"></div>
+
+            <div className="icon-bar">
+              <IconButton className="icon" size="small" aria-label="list">
+                <AppsIcon />
+              </IconButton>
+              <IconButton className="icon" size="small" aria-label="list">
+                <ViewListIcon />
+              </IconButton>
+            </div>
+            {isLoading === true ? (
+              <h1>Loading</h1>
+            ) : (
+              <CardGrid>
+                {filteredCards.map((card) => (
+                  <Card updateCallback={updateCards} card={card}></Card>
+                ))}
+              </CardGrid>
+            )}
+          </div>
+        </main>
+      </div>
       <footer className="footer"></footer>
     </div>
   );
