@@ -1,7 +1,8 @@
 .login-container {
   height: 100vh;
-  margin: 0 auto;
-  background: #4d29ee;
+  background: #e0e0e0;
+
+  padding: 10px;
 
   display: flex;
   align-items: center;
@@ -9,7 +10,7 @@
 }
 
 .login-container .content {
-  padding: 70px 100px 100px 100px;
+  padding: 8vh calc(1vw + 40px) 8vh calc(1vw + 40px);
 
   width: 100%;
   height: 100%;
@@ -20,7 +21,8 @@
 
   background: white;
   border-radius: 3px;
-  box-shadow: 0 0 130px rgba(0, 0, 0, 0.6);
+  border: 1px solid #cccccc;
+  box-shadow: 0 0 130px rgba(0, 0, 0, 0.1);
 
   display: flex;
   justify-content: flex-start;
@@ -60,11 +62,23 @@
   font-weight: 500;
 }
 
+.login-container .content section form .input-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -24px;
+}
 
+.login-container .content section form .input-group span {
+  flex-grow: 1;
+  flex-basis: 0;
 
-.login-container .content section form input {
+  margin-left: 24px;
+}
+
+.login-container .content section form .input-group span input {
   height: 48px;
-  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
 
   padding-left: 16px;
   padding-right: 16px;
@@ -73,40 +87,23 @@
   font-weight: 600;
   color: #505055;
   transition: background-color 0.3s;
-  border: 1px solid #b0b0b5;
+  border: 1px solid #c0c0c5;
 }
 
-.login-container .content section form input:hover {
+.login-container .content section form .input-group span input:hover {
   background-color: #f5f5f5;
 
   border: 1px solid #b0b0b5;
   outline: 0px solid transparent;
 }
 
-.login-container .content section form input::placeholder {
+.login-container .content section form .input-group span input::placeholder {
   font-size: 14px;
   font-weight: 100;
 }
 
-.login-container .content section form span {
-  flex-grow: 1;
-  flex-basis: 0;
-
-  min-width: 320px;
-}
-
-.login-container .content section form .input-group {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: -24px;
-}
-
 .login-container .content section form .input-group:not(:last-child) {
   margin-bottom: 3vh;
-}
-
-.login-container .content section form .input-group span {
-  margin-left: 24px;
 }
 
 .login-container .content section form .input-group h4 {
