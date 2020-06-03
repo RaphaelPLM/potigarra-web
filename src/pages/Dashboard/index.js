@@ -2,6 +2,7 @@ import React, { useEffect, useState, Fragment } from "react";
 import "./styles.css";
 import ViewListIcon from "@material-ui/icons/ViewList";
 import ViewModuleIcon from "@material-ui/icons/ViewModule";
+import AppsIcon from '@material-ui/icons/Apps';
 import { IconButton } from "@material-ui/core";
 import Card from "../../components/Card/Card";
 import CardGrid from "../../components/CardGrid/CardGrid";
@@ -63,14 +64,29 @@ export default function Dashboard() {
 
   return (
     <div className="grid-container">
-      <header className="header"></header>
+      <header className="header blue-bg"></header>
       <aside className="sidenav">
+        <div className="profile-banner">
+          <div className="pic"></div>
+          <h3>Bem-vindo, Raphael</h3>
+        </div>
+
         <ul className="list">
-          <li key="1" className="item">Item One</li>
-          <li key="2"className="item">Item Two</li>
-          <li key="3" className="item">Item Three</li>
-          <li key="4" className="item">Item Four</li>
-          <li key="5" className="item">Item Five</li>
+          <li key="1" className="item blue">
+            Gerenciar cartões
+          </li>
+          <li key="2" className="item blue">
+            Item Two
+          </li>
+          <li key="3" className="item blue">
+            Item Three
+          </li>
+          <li key="4" className="item blue">
+            Item Four
+          </li>
+          <li key="5" className="item blue">
+            Item Five
+          </li>
         </ul>
       </aside>
       <main className="main">
@@ -82,11 +98,11 @@ export default function Dashboard() {
           <div className="horizontal-separator"></div>
 
           <div className="icon-bar">
-            <IconButton size="small" aria-label="list" color="primary">
-              <ViewListIcon />
+            <IconButton className="icon" size="small" aria-label="list">
+              <AppsIcon />
             </IconButton>
-            <IconButton size="small" aria-label="list" color="primary">
-              <ViewModuleIcon />
+            <IconButton className="icon" size="small" aria-label="list">
+              <ViewListIcon />
             </IconButton>
           </div>
           {isLoading === true ? (

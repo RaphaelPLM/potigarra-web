@@ -4,12 +4,12 @@
   margin: 0;
   padding: 0;
   outline: 0;
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 body {
-  font: 400 14px Roboto, sans-serif;
-  background: #f0f0f5;
+  font: 500 14px Roboto, sans-serif;
+  background: #fcfcfc;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -29,9 +29,17 @@ h1 {
 }
 
 .dark-gray {
-  color: #777777;
+  color: rgb(120, 124, 155);
 }
 
 .blue {
-  color: #316db1
+  color: rgb(5, 14, 77)
+}
+
+.blue-bg {
+  background-color: rgb(5, 14, 77);
+}
+
+.link {
+  text-decoration: none;
 }
